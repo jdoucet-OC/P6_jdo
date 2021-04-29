@@ -6,22 +6,47 @@
         <link rel="stylesheet" href="css/style.css"/>
         <script src="scripts/scripts.js"></script>
         <title>OCMovies</title>
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300&display=swap" rel="stylesheet">
     </head>
     <body>
-
+    <!--Header-->
     <div class="header">
       <a href="#default" class="logo">JustStreamit</a>
       <div class="header-right">
-        <a class="active" href="#home">Accueil</a>
-        <a href="#categories">Catégories</a>
+        <a class="active" href="#home">Home</a>
+        <a href="#categories">Logout</a>
       </div>
     </div>
 
+    <!--The very best movie-->
     <div class="best_movie" id="best_movie">
         <div class="block1">
-            <h2 id="best_title"></h2>
-            <button id="myBtn">Details</button>
+            <h2 class="title" id="best_title"></h2>
+            <button class="button">Details</button>
         </div>
+    </div>
+
+    <!--The 7 Best movies from all categories ( minus best movie )-->
+    <div class="categorie" id="cat_best">
+        <h2 class="cat_title">Best movies</h2>
+    </div>
+
+
+    <!--The 7 Best movies from category 1-->
+    <div class="categorie" id="cat_1">
+        <h2 class="cat_title">Western</h2>
+    </div>
+
+    <!--The 7 Best movies from category 2-->
+    <div class="categorie" id="cat_2">
+        <h2 class="cat_title">Musical</h2>
+    </div>
+
+    <!--The 7 Best movies from category 3-->
+    <div class="categorie" id="cat_3">
+        <h2 class="cat_title">Mystery</h2>
+
     </div>
 
     </body>

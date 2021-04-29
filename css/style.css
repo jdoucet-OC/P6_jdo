@@ -1,5 +1,11 @@
 @charset "UTF-8";
 
+body {
+    margin : 0px;
+    font-family: 'Roboto', sans-serif;
+    background: #141414;
+}
+
 /* Style the header with a grey background and some padding */
 .header {
   overflow: hidden;
@@ -53,9 +59,7 @@
     float: none;
   }
 }
-body{
-    background-color : black;
-}
+
 .best_movie {
     padding : 15px;
     display: flex;
@@ -68,7 +72,15 @@ body{
     display:block;
 }
 .best_movie img {
-
     margin: auto;
     height : 500px;
+}
+
+.categorie {
+    height : 500px;
+}
+
+.cat_title {
+    color: white;
+    margin-left :15px;
 }
