@@ -18,9 +18,10 @@ function get_best_movie(url){
         })
         }
 
-const urlmovie = "http://localhost:8000/api/v1/titles/"
-const urlgenre = "http://localhost:8000/api/v1/genres/"
-const urlimdb = "http://localhost:8000/api/v1/titles/?sort_by=-imdb_score";
+const western_url = "http://localhost:8000/api/v1/titles/?genre=Western&sort_by=-imdb_score";
+const musical_url = "http://localhost:8000/api/v1/titles/?genre=Musical&sort_by=-imdb_score";
+const mystery_url = "http://localhost:8000/api/v1/titles/?genre=Mystery&sort_by=-imdb_score";
+const best_url = "http://localhost:8000/api/v1/titles/?sort_by=-imdb_score";
 
-get_best_movie(urlimdb)
+get_best_movie(best_url)
 
