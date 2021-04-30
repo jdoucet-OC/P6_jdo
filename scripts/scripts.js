@@ -2,20 +2,43 @@ function create_best_movie(url){
     fetch(url)
     .then(response => response.json())
     .then(data => {
+        /*fetch the absolute best movie*/
         let movie_url = data.results[0].url;
         fetch(movie_url)
         .then(response => response.json())
         .then(data => {
-            let img_url = data.image_url;
-            let title = data.title;
-            let description = data.description;
+            /* Create and fill in best movie preview HTML */
+            let title_html = document.createElement("h2");
+            let description_html = document.createElement("h3");
             let img_html = document.createElement("img");
-            img_html.src = img_url;
-            img_html.alt = "Best movie image";
-            console.log(title)
+            title_html.innerHTML = data.title;
+            description_html.innerHTML = data.description;
+            img_html.src = data.image_url;
+            img_html.alt = "Best Movie image";
+            let reference_node = document.getElementById("myBtn");
+            let parent_node = document.getElementById("block1");
+            parent_node.insertBefore(title_html,reference_node);
+            parent_node.insertBefore(description_html,reference_node);
             document.getElementById("best_movie").appendChild(img_html);
-            document.getElementById("best_title").innerHTML = title;
-            document.getElementById("best_desc").innerHTML = description;
+            /* Create and fill in best movie Modal */
+            let modal_html1 = document.createElement("h4");
+            let modal_html2 = document.createElement("h4");
+            modal_html1.innerHTML = `${data.title} - ${data.year} - ${data.duration} minutes<br>
+                                     ${data.genres}<br>${data.countries}<br><br>
+                                     Summary :<br>${data.description}`;
+            modal_html2.innerHTML = `Director :<br>${data.directors}<br><br>
+                                     Actors: <br>${data.actors}<br><br>
+                                     IMDB : ${data.imdb_score}/10 -
+                                     SteamItScore : ${data.avg_vote}/10<br><br>
+                                     BoxOffice : ${data.worldwide_gross_income}`
+            document.getElementById("best_movie_modal1").appendChild(modal_html1);
+            document.getElementById("best_movie_modal1").appendChild(modal_html2);
+            let img_html2 = document.createElement("img");
+            img_html2.src = data.image_url;
+            img_html2.alt = "Best Movie image modal";
+            document.getElementById("best_movie_modal2").appendChild(img_html2);
+
+
     })
 })
 }
@@ -25,17 +48,23 @@ function create_categories(url) {
     .then(response => response.json())
     .then(data => {
         for(let ii=0 ; ii<5 ;ii++){
-            let movie = data.results[ii];
-            let img_url = movie.image_url;
-            let title = movie.title;
+            let movie_url = data.results[ii].url;
+            fetch(movie_url)
+            .then(response => response.json())
+            .then(data => {
+                console.log(data.description)
+            })
         }
         fetch(data.next)
         .then(response => response.json())
         .then(data=>{
             for(let ii=0 ; ii<2 ;ii++){
-                let movie = data.results[ii];
-                let img_url = movie.image_url;
-                let title = movie.title;
+                let movie_url = data.results[ii].url;
+                fetch(movie_url)
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data.description)
+                })
             }
         })
     })
