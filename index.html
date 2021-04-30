@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="css/style.css"/>
         <script src="scripts/scripts.js"></script>
+
         <title>OCMovies</title>
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300&display=swap" rel="stylesheet">
@@ -15,21 +16,38 @@
       <a href="#default" class="logo">JustStreamit</a>
       <div class="header-right">
         <a class="active" href="#home">Home</a>
-        <a href="#categories">Logout</a>
+        <a href="#logout">Logout</a>
       </div>
     </div>
 
     <!--The very best movie-->
     <div class="best_movie" id="best_movie">
         <div class="block1">
-            <h2 class="title" id="best_title"></h2>
-            <button class="button">Details</button>
+            <h2 id="best_title"></h2>
+            <h3 id="best_desc"></h3>
+            <!-- Button Modal -->
+            <button id="myBtn">Details</button>
+
+            <!-- The Modal -->
+            <div id="myModal" class="modal">
+
+              <!-- Modal content -->
+              <div class="modal-content">
+                <span class="close">&times;</span>
+                <p>Some text in the Modal..</p>
+              </div>
+            </div>
+            <script src="scripts/modal.js"></script>
+            </div>
         </div>
     </div>
+
+
 
     <!--The 7 Best movies from all categories ( minus best movie )-->
     <div class="categorie" id="cat_best">
         <h2 class="cat_title">Best movies</h2>
+        <!-- Modals Triggers -->
     </div>
 
 
