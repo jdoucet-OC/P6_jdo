@@ -47,23 +47,44 @@ function create_categories(url) {
     fetch(url)
     .then(response => response.json())
     .then(data => {
-        for(let ii=0 ; ii<5 ;ii++){
+        for(let ii=1 ; ii<5 ;ii++){
             let movie_url = data.results[ii].url;
             fetch(movie_url)
             .then(response => response.json())
             .then(data => {
-                console.log(data.description)
+                let li_html = document.createElement("li");
+                let div_html = document.createElement("div");
+                li_html.setAttribute("class", "product-list__item");
+                div_html.setAttribute("data-slide", `${ii}`);
+                div_html.setAttribute("class", "product");
+                div_html.style.background = 'url('+data.image_url+')';
+                div_html.style.backgroundRepeat = "no-repeat";
+                div_html.style.backgroundSize = "auto 400px";
+                div_html.style.backgroundPosition = "center";
+                li_html.appendChild(div_html);
+                document.getElementById('carousel1').appendChild(li_html);
             })
         }
         fetch(data.next)
         .then(response => response.json())
         .then(data=>{
-            for(let ii=0 ; ii<2 ;ii++){
+            for(let ii=0 ; ii<3 ;ii++){
                 let movie_url = data.results[ii].url;
                 fetch(movie_url)
                 .then(response => response.json())
                 .then(data => {
-                    console.log(data.description)
+                    let li_html = document.createElement("li");
+                    let div_html = document.createElement("div");
+                    li_html.setAttribute("class", "product-list__item");
+                    let value = ii+5;
+                    div_html.setAttribute("data-slide", `${value}`);
+                    div_html.setAttribute("class", "product");
+                    div_html.style.background = 'url('+data.image_url+')';
+                    div_html.style.backgroundRepeat = "no-repeat";
+                    div_html.style.backgroundSize = "auto 400px";
+                    div_html.style.backgroundPosition = "center";
+                    li_html.appendChild(div_html);
+                    document.getElementById('carousel1').appendChild(li_html);
                 })
             }
         })
@@ -78,9 +99,7 @@ function app() {
 
     create_best_movie(best_url)
     create_categories(best_url)
-    create_categories(western_url)
-    create_categories(musical_url)
-    create_categories(mystery_url)
 }
 
 app()
+

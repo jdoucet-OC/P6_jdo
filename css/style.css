@@ -133,3 +133,61 @@ body {
   text-decoration: none;
   cursor: pointer;
 }
+
+.carousel {
+	 margin: 20px;
+}
+ .carousel__view {
+    width: 100%;
+    height: 400px;
+    background: grey;
+    box-shadow: 0 1px 8px #888;
+    margin: auto;
+    overflow: clip;
+    white-space: nowrap;
+    position: relative;
+}
+ .carousel__control {
+	 position: absolute;
+	 z-index: 1;
+	 height: 400px;
+	 width: 70px;
+	 background-color: rgba(221, 221, 221, .5);
+	 transition: background-color 0.3s;
+	 display: table;
+}
+ .carousel__control .icon {
+	 display: table-cell;
+	 vertical-align: middle;
+	 text-align: center;
+}
+ .carousel__control:hover {
+	 background-color: rgba(221, 221, 221, .8);
+}
+ .carousel__control:first-of-type {
+	 left: 0;
+}
+ .carousel__control:last-of-type {
+	 right: 0;
+}
+ .product-list {
+	 position: absolute;
+	 margin: 0;
+	 padding: 0;
+	 transition: transform 0.3s;
+	 transform: translateX(0px);
+	 list-style: none;
+	 height: 400px;
+}
+ .product-list__item {
+	 width: 450px;
+	 height: 400px;
+	 display: inline-block;
+
+}
+ .product {
+	 display: table;
+	 height: 100%;
+	 width: 100%;
+}
+
