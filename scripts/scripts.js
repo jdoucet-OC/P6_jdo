@@ -55,7 +55,6 @@ function create_categories(url,carousel) {
                 let li_html = document.createElement("li");
                 let div_html = document.createElement("div");
                 li_html.setAttribute("class", "product-list__item");
-                div_html.setAttribute("data-slide", `${ii}`);
                 div_html.setAttribute("class", "product");
                 div_html.style.background = 'url('+data.image_url+')';
                 div_html.style.backgroundRepeat = "no-repeat";
@@ -77,7 +76,6 @@ function create_categories(url,carousel) {
                     let div_html = document.createElement("div");
                     li_html.setAttribute("class", "product-list__item");
                     let value = ii+5;
-                    div_html.setAttribute("data-slide", `${value}`);
                     div_html.setAttribute("class", "product");
                     div_html.style.background = 'url('+data.image_url+')';
                     div_html.style.backgroundRepeat = "no-repeat";
