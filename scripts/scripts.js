@@ -43,7 +43,7 @@ function create_best_movie(url){
 })
 }
 
-function create_categories(url) {
+function create_categories(url,carousel) {
     fetch(url)
     .then(response => response.json())
     .then(data => {
@@ -62,7 +62,7 @@ function create_categories(url) {
                 div_html.style.backgroundSize = "auto 400px";
                 div_html.style.backgroundPosition = "center";
                 li_html.appendChild(div_html);
-                document.getElementById('carousel1').appendChild(li_html);
+                document.getElementById(carousel).appendChild(li_html);
             })
         }
         fetch(data.next)
@@ -84,7 +84,7 @@ function create_categories(url) {
                     div_html.style.backgroundSize = "auto 400px";
                     div_html.style.backgroundPosition = "center";
                     li_html.appendChild(div_html);
-                    document.getElementById('carousel1').appendChild(li_html);
+                    document.getElementById(carousel).appendChild(li_html);
                 })
             }
         })
@@ -98,7 +98,10 @@ function app() {
     let best_url = "http://localhost:8000/api/v1/titles/?sort_by=-imdb_score";
 
     create_best_movie(best_url)
-    create_categories(best_url)
+    create_categories(best_url,'carousel1')
+    create_categories(western_url,'carousel2')
+    create_categories(musical_url,'carousel3')
+    create_categories(mystery_url,'carousel4')
 }
 
 app()
