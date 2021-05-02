@@ -1,47 +1,51 @@
 (function() {
-  var carousels = document.querySelectorAll('.js-product-carousel');
+    var carousels = document.querySelectorAll('.js-product-carousel');
 
-  [].forEach.call(carousels, function(carousel) {
-    carouselize(carousel);
-  });
+    [].forEach.call(carousels, function(carousel) {
+        carouselize(carousel);
+    });
 
 })();
 
 function carouselize(carousel) {
-  var productList = carousel.querySelector('.js-product-list');
-  var productListWidth = 0;
-  var productListSteps = 0;
-  var products = carousel.querySelectorAll('.product');
-  var productAmount = 0;
-  var productAmountVisible = 4;
-  var carouselPrev = carousel.querySelector('.js-carousel-prev');
-  var carouselNext = carousel.querySelector('.js-carousel-next');
 
-  //Count all the products
-  [].forEach.call(products, function(product) {
-    productAmount++;
-    productListWidth += 250;
-    productList.style.width = productListWidth+"px";
-  });
+    var productList = carousel.querySelector('.js-product-list');
+    var productListWidth = 0;
+    var productListSteps = 0;
+    var products = carousel.querySelectorAll('.product-list__item');
+    var productAmount = 0;
+    var productAmountVisible = Math.round(window.innerWidth/315);
+    var carouselPrev = carousel.querySelector('.js-carousel-prev');
+    var carouselNext = carousel.querySelector('.js-carousel-next');
 
-  carouselNext.onclick = function() {
+    //window Resize
+    window.addEventListener('resize', function(){
+        productAmountVisible = Math.round(window.innerWidth/315);
+    });
+
+    //Count all the products
+    [].forEach.call(products, function(product) {
+        productAmount++;
+        productListWidth += 315;
+        productList.style.width = productListWidth+"px";
+    });
+
+    carouselNext.onclick = function() {
     if(productListSteps < productAmount-productAmountVisible) {
-      productListSteps++;
-      moveProductList();
-      console.log(test);
+        productListSteps++;
+        moveProductList();
     }
-  }
-  carouselPrev.onclick = function() {
+    }
+    carouselPrev.onclick = function() {
     if(productListSteps > 0) {
-      productListSteps--;
-      moveProductList();
-      console.log(test);
+        productListSteps--;
+        moveProductList();
     }
-  }
+    }
 
-  // This is a bit hacky, let me know if you find a better way to do this!
-  // Move the carousels product-list
-  function moveProductList() {
-    productList.style.transform = "translateX(-"+33*productListSteps+"%)";
+    // This is a bit hacky, let me know if you find a better way to do this!
+    // Move the carousels product-list
+    function moveProductList() {
+        productList.style.transform = "translateX(-"+315*productListSteps+"px)";
   }
 }

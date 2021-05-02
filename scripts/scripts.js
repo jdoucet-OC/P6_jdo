@@ -1,3 +1,15 @@
+const best_item = ['best-movie item1','best-movie item2','best-movie item3',
+'best-movie item4','best-movie item5','best-movie item6','best-movie item7']
+
+const western_item = ['western item1','western item2','western item3',
+'western item4','western item5','western item6','western item7']
+
+const musical_item = ['musical item1','musical item2','musical item3',
+'musical item4','musical item5','musical item6','musical item7']
+
+const mystery_item = ['mystery item1','mystery item2','mystery item3',
+'mystery item4','mystery item5','mystery item6','mystery item7']
+
 function create_best_movie(url){
     fetch(url)
     .then(response => response.json())
@@ -43,50 +55,43 @@ function create_best_movie(url){
 })
 }
 
-function create_categories(url,carousel) {
+function create_categories(url,item_list) {
     fetch(url)
     .then(response => response.json())
     .then(data => {
-        for(let ii=1 ; ii<5 ;ii++){
+        let ii = 0
+        for(ii ; ii<5 ;ii++){
             let movie_url = data.results[ii].url;
+            let items = item_list[ii]
             fetch(movie_url)
             .then(response => response.json())
             .then(data => {
-                let li_html = document.createElement("li");
-                let div_html = document.createElement("div");
-                li_html.setAttribute("class", "product-list__item");
-                div_html.setAttribute("class", "product");
-                div_html.style.background = 'url('+data.image_url+')';
-                div_html.style.backgroundRepeat = "no-repeat";
-                div_html.style.backgroundSize = "auto 400px";
-                div_html.style.backgroundPosition = "center";
-                li_html.appendChild(div_html);
-                document.getElementById(carousel).appendChild(li_html);
+                let img_html = document.createElement("img");
+                img_html.setAttribute("class", "product");
+                img_html.src = data.image_url;
+                document.getElementById(items).appendChild(img_html)
             })
         }
         fetch(data.next)
         .then(response => response.json())
         .then(data=>{
-            for(let ii=0 ; ii<3 ;ii++){
+            let ii = 0
+            for(ii ; ii<2 ;ii++){
                 let movie_url = data.results[ii].url;
+                let items = item_list[ii+5]
                 fetch(movie_url)
                 .then(response => response.json())
                 .then(data => {
-                    let li_html = document.createElement("li");
-                    let div_html = document.createElement("div");
-                    li_html.setAttribute("class", "product-list__item");
-                    let value = ii+5;
-                    div_html.setAttribute("class", "product");
-                    div_html.style.background = 'url('+data.image_url+')';
-                    div_html.style.backgroundRepeat = "no-repeat";
-                    div_html.style.backgroundSize = "auto 400px";
-                    div_html.style.backgroundPosition = "center";
-                    li_html.appendChild(div_html);
-                    document.getElementById(carousel).appendChild(li_html);
+                    let img_html = document.createElement("img");
+                    img_html.setAttribute("class", "product");
+                    img_html.src = data.image_url;
+                    document.getElementById(items).appendChild(img_html)
                 })
             }
         })
+
     })
+
 }
 
 function app() {
@@ -96,11 +101,10 @@ function app() {
     let best_url = "http://localhost:8000/api/v1/titles/?sort_by=-imdb_score";
 
     create_best_movie(best_url)
-    create_categories(best_url,'carousel1')
-    create_categories(western_url,'carousel2')
-    create_categories(musical_url,'carousel3')
-    create_categories(mystery_url,'carousel4')
+    create_categories(best_url,best_item)
+    create_categories(western_url,western_item)
+    create_categories(musical_url,musical_item)
+    create_categories(mystery_url,mystery_item)
 }
 
 app()
-
