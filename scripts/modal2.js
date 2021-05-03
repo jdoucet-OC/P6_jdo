@@ -21,12 +21,12 @@ function modalize(item){
 
     // When the user clicks the button, open the modal
     btn.onclick = function() {
-      modal.style.display = "block";
+      modal.className = "modal display";
     }
 
     // When the user clicks on <span> (x), close the modal
     span.onclick = function() {
-      modal.style.display = "none";
+      modal.className = "modal";
     }
 
 }
