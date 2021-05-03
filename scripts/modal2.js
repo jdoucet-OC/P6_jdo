@@ -19,6 +19,7 @@ function modalize(item){
     var btn = item.querySelector(".product");
     var span = item.querySelector(".close");
 
+    // When the user clicks the button, open the modal
     btn.onclick = function() {
       modal.style.display = "block";
     }
