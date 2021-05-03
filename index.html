@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -5,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="css/style.css"/>
         <script src="scripts/scripts.js"></script>
-
+        <script src="scripts/modal2.js"></script>
         <title>OCMovies</title>
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300&display=swap" rel="stylesheet">
@@ -29,9 +30,9 @@
             <!-- The Modal -->
             <div id="myModal" class="modal">
               <!-- Modal content -->
-              <div id="best_movie_modal" class="modal-content">
-                  <div id="best_movie_modal1" class="modal-content1"></div>
-                  <div id="best_movie_modal2" class="modal-content2"></div>
+              <div id="the-best-movie-modal" class="modal-content">
+                  <div id="the-best-movie-modal1" class="modal-content1"></div>
+                  <div id="the-best-movie-modal2" class="modal-content2"></div>
                   <span class="close">x</span>
               </div>
             </div>
@@ -47,15 +48,15 @@
         <div class="carousel js-product-carousel">
           <div class="carousel__view">
             <span class="carousel__control js-carousel-prev"><i class="icon">prev</i></span>
-            <span href="#" class="carousel__control js-carousel-next"><i class="icon">next</i></span>
+            <span class="carousel__control js-carousel-next"><i class="icon">next</i></span>
             <ul id="carousel1" class="product-list js-product-list">
-                <li id="best-movie item1" class="product-list__item"></li>
-                <li id="best-movie item2" class="product-list__item"></li>
-                <li id="best-movie item3" class="product-list__item"></li>
-                <li id="best-movie item4" class="product-list__item"></li>
-                <li id="best-movie item5" class="product-list__item"></li>
-                <li id="best-movie item6" class="product-list__item"></li>
-                <li id="best-movie item7" class="product-list__item"></li>
+                <li id="best-movie-item1" class="product-list__item"></li>
+                <li id="best-movie-item2" class="product-list__item"></li>
+                <li id="best-movie-item3" class="product-list__item"></li>
+                <li id="best-movie-item4" class="product-list__item"></li>
+                <li id="best-movie-item5" class="product-list__item"></li>
+                <li id="best-movie-item6" class="product-list__item"></li>
+                <li id="best-movie-item7" class="product-list__item"></li>
             </ul>
           </div>
         </div>
@@ -68,15 +69,15 @@
         <div class="carousel js-product-carousel">
           <div class="carousel__view">
             <span class="carousel__control js-carousel-prev"><i class="icon">prev</i></span>
-            <span href="#" class="carousel__control js-carousel-next"><i class="icon">next</i></span>
+            <span class="carousel__control js-carousel-next"><i class="icon">next</i></span>
             <ul id="carousel2" class="product-list js-product-list">
-                <li id="western item1" class="product-list__item"></li>
-                <li id="western item2" class="product-list__item"></li>
-                <li id="western item3" class="product-list__item"></li>
-                <li id="western item4" class="product-list__item"></li>
-                <li id="western item5" class="product-list__item"></li>
-                <li id="western item6" class="product-list__item"></li>
-                <li id="western item7" class="product-list__item"></li>
+                <li id="western-item1" class="product-list__item"></li>
+                <li id="western-item2" class="product-list__item"></li>
+                <li id="western-item3" class="product-list__item"></li>
+                <li id="western-item4" class="product-list__item"></li>
+                <li id="western-item5" class="product-list__item"></li>
+                <li id="western-item6" class="product-list__item"></li>
+                <li id="western-item7" class="product-list__item"></li>
             </ul>
           </div>
         </div>
@@ -88,15 +89,15 @@
         <div class="carousel js-product-carousel">
           <div class="carousel__view">
             <span class="carousel__control js-carousel-prev"><i class="icon">prev</i></span>
-            <span href="#" class="carousel__control js-carousel-next"><i class="icon">next</i></span>
+            <span class="carousel__control js-carousel-next"><i class="icon">next</i></span>
             <ul id="carousel3" class="product-list js-product-list">
-                <li id="musical item1" class="product-list__item"></li>
-                <li id="musical item2" class="product-list__item"></li>
-                <li id="musical item3" class="product-list__item"></li>
-                <li id="musical item4" class="product-list__item"></li>
-                <li id="musical item5" class="product-list__item"></li>
-                <li id="musical item6" class="product-list__item"></li>
-                <li id="musical item7" class="product-list__item"></li>
+                <li id="musical-item1" class="product-list__item"></li>
+                <li id="musical-item2" class="product-list__item"></li>
+                <li id="musical-item3" class="product-list__item"></li>
+                <li id="musical-item4" class="product-list__item"></li>
+                <li id="musical-item5" class="product-list__item"></li>
+                <li id="musical-item6" class="product-list__item"></li>
+                <li id="musical-item7" class="product-list__item"></li>
             </ul>
           </div>
         </div>
@@ -108,15 +109,15 @@
         <div class="carousel js-product-carousel">
           <div class="carousel__view">
             <span class="carousel__control js-carousel-prev"><i class="icon">prev</i></span>
-            <span href="#" class="carousel__control js-carousel-next"><i class="icon">next</i></span>
+            <span class="carousel__control js-carousel-next"><i class="icon">next</i></span>
             <ul id="carousel4" class="product-list js-product-list">
-                <li id="mystery item1" class="product-list__item"></li>
-                <li id="mystery item2" class="product-list__item"></li>
-                <li id="mystery item3" class="product-list__item"></li>
-                <li id="mystery item4" class="product-list__item"></li>
-                <li id="mystery item5" class="product-list__item"></li>
-                <li id="mystery item6" class="product-list__item"></li>
-                <li id="mystery item7" class="product-list__item"></li>
+                <li id="mystery-item1" class="product-list__item"></li>
+                <li id="mystery-item2" class="product-list__item"></li>
+                <li id="mystery-item3" class="product-list__item"></li>
+                <li id="mystery-item4" class="product-list__item"></li>
+                <li id="mystery-item5" class="product-list__item"></li>
+                <li id="mystery-item6" class="product-list__item"></li>
+                <li id="mystery-item7" class="product-list__item"></li>
             </ul>
           </div>
         </div>

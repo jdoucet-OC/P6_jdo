@@ -1,6 +1,7 @@
 (function() {
     var carousels = document.querySelectorAll('.js-product-carousel');
 
+
     [].forEach.call(carousels, function(carousel) {
         carouselize(carousel);
     });
