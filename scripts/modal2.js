@@ -6,7 +6,12 @@
     if (modal_ready===28){
         var list_items = document.querySelectorAll('.product-list__item');
         [].forEach.call(list_items, function(item) {
+        try{
             modalize(item);
+            }
+        catch(error){
+            console.log(error);
+        }
         });
     }
 }, false);

@@ -24,7 +24,7 @@ function create_best_movie(url){
             let description_html = document.createElement("h3");
             let img_html = document.createElement("img");
             title_html.innerHTML = data.title;
-            description_html.innerHTML = data.description;
+            description_html.innerHTML = data.long_description;
             img_html.src = data.image_url;
             img_html.alt = "Best Movie image";
             let reference_node = document.getElementById("myBtn");
@@ -35,14 +35,21 @@ function create_best_movie(url){
             /* Create and fill in best movie Modal */
             let modal_html1 = document.createElement("div");
             let modal_html2 = document.createElement("div");
+            var income = data.worldwide_gross_income;
+                if (income == null) {
+                    income = "Unknown";
+                }
+                else {
+                    income+='$';
+                }
             modal_html1.innerHTML = `${data.title} - ${data.year} - ${data.duration} minutes<br>
                                      ${data.genres}<br>${data.countries}<br><br>
-                                     Summary :<br>${data.description}`;
+                                     Summary :<br>${data.long_description}<br><br>`;
             modal_html2.innerHTML = `Director :<br>${data.directors}<br><br>
                                      Actors: <br>${data.actors}<br><br>
                                      IMDB : ${data.imdb_score}/10 -
                                      SteamItScore : ${data.avg_vote}/10<br><br>
-                                     BoxOffice : ${data.worldwide_gross_income}`;
+                                     BoxOffice : ${income}`;
             document.getElementById("the-best-movie-modal1").appendChild(modal_html1);
             document.getElementById("the-best-movie-modal1").appendChild(modal_html2);
             let img_html2 = document.createElement("img");
@@ -73,6 +80,13 @@ function create_categories(url,item_list) {
             fetch(movie_url)
             .then(response => response.json())
             .then(data => {
+                var income = data.worldwide_gross_income;
+                if (income == null) {
+                    income = "Unknown";
+                }
+                else {
+                    income+='$';
+                }
                 let img_html = document.createElement("img");
                 img_html.setAttribute("class", "product");
                 img_html.src = data.image_url;
@@ -90,14 +104,13 @@ function create_categories(url,item_list) {
                 modal_content1.innerHTML =`${data.title} - ${data.year} -
                                            ${data.duration} minutes<br>
                                            ${data.genres}<br>${data.countries}<br><br>
-                                            Summary :<br>${data.description}<br><br>
+                                            Summary :<br>${data.long_description}<br><br>
                                             Director :<br>${data.directors}<br><br>
                                             Actors: <br>${data.actors}<br><br>
                                             IMDB : ${data.imdb_score}/10 -
                                             SteamItScore : ${data.avg_vote}/10<br><br>
-                                            BoxOffice : ${data.worldwide_gross_income}`;
+                                            BoxOffice : ${income}`;
                 modal_content2.setAttribute("class", "modal-content2");
-
                 modal_content.setAttribute("class", "modal-content");
                 modal_div.setAttribute("class", "modal");
                 let img_html2 = document.createElement("img");
@@ -132,6 +145,13 @@ function create_categories(url,item_list) {
                 fetch(movie_url)
                 .then(response => response.json())
                 .then(data => {
+                    var income = data.worldwide_gross_income;
+                    if (income == null) {
+                        income = "Unknown";
+                    }
+                    else {
+                        income+='$';
+                    }
                     let img_html = document.createElement("img");
                     img_html.setAttribute("class", "product");
                     img_html.src = data.image_url;
@@ -149,12 +169,12 @@ function create_categories(url,item_list) {
                     modal_content1.innerHTML =`${data.title} - ${data.year} -
                                                ${data.duration} minutes<br>
                                                ${data.genres}<br>${data.countries}<br><br>
-                                                Summary :<br>${data.description}<br><br>
+                                                Summary :<br>${data.long_description}<br><br>
                                                 Director :<br>${data.directors}<br><br>
                                                 Actors: <br>${data.actors}<br><br>
                                                 IMDB : ${data.imdb_score}/10 -
                                                 SteamItScore : ${data.avg_vote}/10<br><br>
-                                                BoxOffice : ${data.worldwide_gross_income}M`;
+                                                BoxOffice : ${income}`;
                     modal_content2.setAttribute("class", "modal-content2");
 
                     modal_content.setAttribute("class", "modal-content");
