@@ -81,6 +81,7 @@ body {
 }
 
 .categorie {
+    z-index:auto;
     height : 500px;
     margin-top : 35px;
 }
@@ -92,6 +93,7 @@ body {
 
 /* The Modal (background) */
 .modal {
+    z-index:3;
     display: none;
     position: fixed;
     padding-top: 100px;
@@ -147,6 +149,7 @@ body {
 }
 
 .carousel {
+    z-index:auto;
     margin: 20px;
 }
 .carousel__view {
@@ -181,7 +184,7 @@ body {
     right: 0;
 }
 .product-list {
-
+    z-index:auto;
     position: absolute;
     margin: 0;
     padding: 0;
@@ -206,6 +209,7 @@ body {
     left: -1400px;
 }
 .product-list__item {
+    z-index:auto;
     width: 300px;
     height: 400px;
     display: inline-block;
@@ -213,6 +217,7 @@ body {
 
 }
 .product {
+    z-index:auto;
     display: table;
     height: 100%;
     width: 100%;
