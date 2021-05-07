@@ -1,5 +1,5 @@
-const best_item = ['best-movie-item1','best-movie-item2','best-movie-item3',
-'best-movie-item4','best-movie-item5','best-movie-item6','best-movie-item7']
+const best_item = ['best-movie-item2','best-movie-item3','best-movie-item4',
+'best-movie-item5','best-movie-item6','best-movie-item7','best-movie-item8']
 
 const western_item = ['western-item1','western-item2','western-item3',
 'western-item4','western-item5','western-item6','western-item7']
@@ -68,24 +68,36 @@ function create_best_movie(url){
     })
 }
 
-function create_categories(url,item_list) {
-    fetch(url)
+function create_categories(api_url, item_list) {
+    /* fetch next page1 */
+    fetch(api_url)
     .then(response => response.json())
     .then(data => {
         let ii = 0;
-        for(ii ; ii<5 ;ii++){
+        let jj = 5;
+        let ff = 0;
+        if (api_url == "http://localhost:8000/api/v1/titles/?sort_by=-imdb_score") {
+            ii = 1;
+            ff = -1; /* Allows to get right index html on best movie carousel */
+        }
+        for(ii ; ii<jj ;ii++){
             let movie_url = data.results[ii].url;
-            let item_id = item_list[ii];
+            let item_id = item_list[ii+ff];
             let image_alt = 'Image for '+item_id;
+            /* fetch next page 1 movie per movie */
             fetch(movie_url)
             .then(response => response.json())
             .then(data => {
-                var income = data.worldwide_gross_income;
+                let income = data.worldwide_gross_income;
+                let description_html = data.long_description;
                 if (income == null) {
                     income = "Unknown";
                 }
                 else {
                     income+='$';
+                }
+                if (description_html == "|") {
+                    description_html = "Unknown";
                 }
                 let img_html = document.createElement("img");
                 img_html.setAttribute("class", "product");
@@ -93,6 +105,7 @@ function create_categories(url,item_list) {
                 img_html.alt = image_alt;
                 document.getElementById(item_id).appendChild(img_html)
                 /*modal*/
+                let line_breaker = document.createElement('br');
                 let modal_div = document.createElement("div");
                 let modal_content = document.createElement("div");
                 let modal_content1 = document.createElement("div");
@@ -104,7 +117,7 @@ function create_categories(url,item_list) {
                 modal_content1.innerHTML =`${data.title} - ${data.year} -
                                            ${data.duration} minutes<br>
                                            ${data.genres}<br>${data.countries}<br><br>
-                                            Summary :<br>${data.long_description}<br><br>
+                                            Summary :<br>${description_html}<br><br>
                                             Director :<br>${data.directors}<br><br>
                                             Actors: <br>${data.actors}<br><br>
                                             IMDB : ${data.imdb_score}/10 -
@@ -125,39 +138,52 @@ function create_categories(url,item_list) {
 
 
             })
+
             .then(()=> {
                 const event = new Event('modal');
                 document.dispatchEvent(event);
-                })
+            })
 
             .catch(error => {
                 console.error('Error:', error);
             })
         }
+        /* fetch next page */
         fetch(data.next)
         .then(response => response.json())
         .then(data=>{
-            let ii = 0
-            for(ii ; ii<2 ;ii++){
+            let ii = 0;
+            let jj = 2;
+            let ff = 5; /* Allows to get right index*/
+            if (api_url == "http://localhost:8000/api/v1/titles/?sort_by=-imdb_score") {
+                jj = 3;
+                ff = 4; /* Allows to get right index html on best movie carousel */
+            }
+            for(ii ; ii<jj ;ii++){
                 let movie_url = data.results[ii].url;
-                let item_id = item_list[ii+5]
+                let item_id = item_list[ii+ff]
                 let image_alt = 'Image for '+item_id;
+                /* fetch next page movie per movie */
                 fetch(movie_url)
                 .then(response => response.json())
                 .then(data => {
-                    var income = data.worldwide_gross_income;
+                    let income = data.worldwide_gross_income;
+                    let description_html = data.long_description;
                     if (income == null) {
                         income = "Unknown";
                     }
                     else {
-                        income+='$';
+                        income+=' $';
+                    }
+                    if (description_html == "|") {
+                        description_html = "Unknown";
                     }
                     let img_html = document.createElement("img");
                     img_html.setAttribute("class", "product");
                     img_html.src = data.image_url;
                     img_html.alt = image_alt;
                     document.getElementById(item_id).appendChild(img_html)
-                    /*modal*/
+                    /* modal */
                     let modal_div = document.createElement("div");
                     let modal_content = document.createElement("div");
                     let modal_content1 = document.createElement("div");
@@ -169,14 +195,13 @@ function create_categories(url,item_list) {
                     modal_content1.innerHTML =`${data.title} - ${data.year} -
                                                ${data.duration} minutes<br>
                                                ${data.genres}<br>${data.countries}<br><br>
-                                                Summary :<br>${data.long_description}<br><br>
+                                                Summary :<br>${description_html}<br><br>
                                                 Director :<br>${data.directors}<br><br>
                                                 Actors: <br>${data.actors}<br><br>
                                                 IMDB : ${data.imdb_score}/10 -
                                                 SteamItScore : ${data.avg_vote}/10<br><br>
                                                 BoxOffice : ${income}`;
                     modal_content2.setAttribute("class", "modal-content2");
-
                     modal_content.setAttribute("class", "modal-content");
                     modal_div.setAttribute("class", "modal");
                     let img_html2 = document.createElement("img");
@@ -190,11 +215,18 @@ function create_categories(url,item_list) {
                     document.getElementById(item_id).appendChild(modal_div);
 
                 })
-            .then(()=> {
-                const event = new Event('modal');
-                document.dispatchEvent(event);
+
+                .then(()=> {
+                    const event = new Event('modal');
+                    document.dispatchEvent(event);
                 })
+
+                .catch(error => {
+                    console.error('Error:', error);
+                })
+
             }
+
         })
         .catch(error => {
             console.error('Error:', error);
@@ -215,10 +247,10 @@ function app() {
     let best_url = "http://localhost:8000/api/v1/titles/?sort_by=-imdb_score";
 
     create_best_movie(best_url)
-    create_categories(best_url,best_item)
-    create_categories(western_url,western_item)
-    create_categories(musical_url,musical_item)
-    create_categories(mystery_url,mystery_item)
+    create_categories(best_url, best_item)
+    create_categories(western_url, western_item)
+    create_categories(musical_url, musical_item)
+    create_categories(mystery_url, mystery_item)
 }
 
 app()

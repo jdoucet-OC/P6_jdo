@@ -1,9 +1,9 @@
 
 (function() {
-    modal_ready = 0;
+    var modal_ready = 0;
     document.addEventListener('modal', function (e) {
     modal_ready += 1;
-    if (modal_ready===28){
+    if (modal_ready == 28){
         var list_items = document.querySelectorAll('.product-list__item');
         [].forEach.call(list_items, function(item) {
         try{
@@ -14,6 +14,7 @@
         }
         });
     }
+
 }, false);
 
 
@@ -33,5 +34,4 @@ function modalize(item){
     span.onclick = function() {
       modal.className = "modal";
     }
-
 }
